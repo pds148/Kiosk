@@ -4,6 +4,9 @@ import kiosk.service.KioskMenuInventoryService;
 import kiosk.service.KioskMenuOrderService;
 import kiosk.service.KioskMenuService;
 import menu.model.Menu;
+import menu.service.MenuService;
+import order.service.OrderService;
+import product.service.ProductService;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -17,13 +20,17 @@ public class KioskMain {
         menuList.add(new Menu(1, "Menu1", "Description1", 10));
         menuList.add(new Menu(2, "Menu2", "Description2", 15));
 
-
         Scanner scanner = new Scanner(System.in);
         KioskMenuService kioskMenuService = new KioskMenuService(menuList);
-        KioskMenuInventoryService kioskMenuInventoryService = null;
+        OrderService orderService = new OrderService();
+        MenuService menuService = new MenuService();
+        ProductService productService = new ProductService();
+        KioskMenuInventoryService kioskMenuInventoryService = new KioskMenuInventoryService(orderService, menuService, productService);
         KioskMenuOrderService kioskMenuOrderService = new KioskMenuOrderService(menuList);
         KioskMenuController kioskMenuController = new KioskMenuController(scanner, kioskMenuService, kioskMenuInventoryService, kioskMenuOrderService, menuList);
 
+        
+        
         kioskMenuController.displayMenu();
         kioskMenuController.processMenuChoice();
 

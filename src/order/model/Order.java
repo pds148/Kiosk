@@ -44,7 +44,7 @@ public class Order {
     }
 
     public void addMenu(Menu menu) {
-        this.menuMap.add(menu);
+        this.menuMap.merge(menu, 1, Integer::sum);
     }
 
     public void addMenuMap(Menu item) {

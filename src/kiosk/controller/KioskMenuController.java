@@ -23,6 +23,10 @@ public class KioskMenuController {
         this.kioskMenuInventoryService = kioskMenuInventoryService;
         this.kioskMenuOrderService = kioskMenuOrderService;
         this.menuList = menuList;
+
+        if (this.kioskMenuInventoryService == null) {
+            throw new IllegalArgumentException("KioskMenuInventoryService cannot be null");
+        }
     }
 
     public void displayMenu() {
@@ -81,7 +85,6 @@ public class KioskMenuController {
     public void placeOrder() {
 
     }
-
 }
 
 
